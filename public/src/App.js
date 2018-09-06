@@ -4,12 +4,12 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
 import ToDoAppContainer from './containers/ToDoAppContainter';
-import toDoApp from './reducers';
+import rootReducer from './reducers';
 
 import 'normalize.css';
 import './styles/styles.scss';
 
-const store = createStore(toDoApp);
+const store = createStore(rootReducer);
 
 const App = () => (
   <Provider store={store}>

@@ -1,21 +1,17 @@
-import { ADD_TASK, DELETE_TASK, TOGGLE_TASK, DELETE_COMPLETED } from '../actions/toDoApp';
-
-const initialState = {
-  toDoList: [],
-  completedList: []
-};
+import { ADD_TASK, DELETE_TASK, TOGGLE_TASK, DELETE_COMPLETED } from '../actions';
+import initialState from '../state/initialState';
 
 const toDoApp = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TASK: {
       return { ...state, toDoList: [...state.toDoList, action.task] }
-    };
+    }
     case DELETE_TASK: {
       return { ...state,
         toDoList: state.toDoList.filter(item => item.id !== action.id),
         completedList: state.completedList.filter(item => item.id !== action.id)
       }
-    };
+    }
     case TOGGLE_TASK: {
       if (state.toDoList.includes(action.task)) {
         return { ...state,
@@ -27,7 +23,7 @@ const toDoApp = (state = initialState, action) => {
           completedList: state.completedList.filter(item => item.id !== action.task.id),
           toDoList: [...state.toDoList, action.task]
         }
-      };
+      }
     }
     case DELETE_COMPLETED: {
       return { ...state,
