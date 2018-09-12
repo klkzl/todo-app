@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import ToDoApp from '../components/ToDoApp';
-import { addTask, deleteTask, toggleTask, dragAndDrop } from '../actions';
+import { addTask, deleteTask, toggleTask } from '../actions';
 
 const mapStateToProps = state => ({
   toDoList: state.toDoApp.toDoList,
@@ -8,7 +8,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  addTask, deleteTask, toggleTask, dragAndDrop
+  addTask, deleteTask, toggleTask
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ToDoApp);

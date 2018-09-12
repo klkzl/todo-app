@@ -1,4 +1,4 @@
-import { ADD_TASK, DELETE_TASK, TOGGLE_TASK, DELETE_COMPLETED, DRAG_AND_DROP } from '../actions';
+import { ADD_TASK, DELETE_TASK, TOGGLE_TASK, DELETE_COMPLETED } from '../actions';
 import initialState from '../state/initialState';
 
 const toDoApp = (state = initialState, action) => {
@@ -29,9 +29,6 @@ const toDoApp = (state = initialState, action) => {
       return { ...state,
         completedList: []
       }
-    }
-    case DRAG_AND_DROP: {
-      console.log(action.task);
     }
     default:
       return state;
