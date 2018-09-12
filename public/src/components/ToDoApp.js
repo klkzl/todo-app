@@ -60,8 +60,8 @@ class ToDoApp extends Component {
     })
   }
 
-  onDragEnd = () => {
-    // fill with some wise data
+  onDragEnd = (item) => {
+    this.props.dragTask(item);
   }
 
   render() {
