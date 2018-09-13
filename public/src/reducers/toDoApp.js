@@ -59,8 +59,46 @@ const toDoApp = (state = initialState, action) => {
         return {
           ... state,
           toDoList:  [...newList]
-         }
+        }
       }
+
+      if (source.droppableId === completedTitle && destination.droppableId === completedTitle) {
+        const newList = Array.from(state.completedList);
+        const dropItem = newList.filter(item => item.id === draggableId);
+        newList.splice(source.index, 1);
+        newList.splice(destination.index, 0, dropItem[0]);
+        return {
+          ... state,
+          completedList:  [...newList]
+        }
+      }
+
+      if (source.droppableId === defaultTitle && destination.droppableId === completedTitle) {
+        const sourceList = Array.from(state.toDoList);
+        const destinationList = Array.from(state.completedList);
+        const dropItem = sourceList.filter(item => item.id === draggableId);
+        sourceList.splice(source.index, 1);
+        destinationList.splice(destination.index, 0, dropItem[0]);
+        return {
+          ...state,
+          toDoList: [...sourceList],
+          completedList: [...destinationList]
+        }
+      }
+
+      if (source.droppableId === completedTitle && destination.droppableId === defaultTitle) {
+        const sourceList = Array.from(state.completedList);
+        const destinationList = Array.from(state.toDoList);
+        const dropItem = sourceList.filter(item => item.id === draggableId);
+        sourceList.splice(source.index, 1);
+        destinationList.splice(destination.index, 0, dropItem[0]);
+        return {
+          ...state,
+          completedList: [...sourceList],
+          toDoList: [...destinationList]
+        }
+      }
+
     }
     default:
       return state;
