@@ -9,11 +9,13 @@
     padding: 0;
 
     li {
+      background-color: white;
       border-bottom:  1px solid $light-brown;
       border-left: 5px solid $medium-purple;
       font-weight: 300;
       list-style-type: none;
       margin-bottom: $s-size * .5;
+      opacity: .9;
       padding: $s-size * .5;
       position: relative;
 

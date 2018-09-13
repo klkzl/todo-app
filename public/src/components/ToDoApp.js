@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { DragDropContext } from 'react-beautiful-dnd';
 
 import ButtonsContainer from '../containers/ButtonsContainer';
 import Footer from './Footer';
@@ -59,6 +60,10 @@ class ToDoApp extends Component {
     })
   }
 
+  onDragEnd = (item) => {
+    this.props.dragTask(item);
+  }
+
   render() {
     const { toDoList, completedList } = this.props;
     const { showToDo, showCompleted, displayTitles } = this.state;
@@ -66,25 +71,27 @@ class ToDoApp extends Component {
       <div className="container">
         <h3>ToDo App</h3>
         <Form handleSubmit={this.handleSubmit} />
-        { showToDo &&
-          <List
-            title="ToDo Tasks"
-            iterateList={toDoList}
-            handleToggleItem={this.handleToggleItem}
-            handleDeleteItem={this.handleDeleteItem}
-            displayTitles={displayTitles}
-          />
-        }
-        { showCompleted &&
-          <List
-            title="Completed Tasks"
-            iterateList={completedList}
-            handleToggleItem={this.handleToggleItem}
-            handleDeleteItem={this.handleDeleteItem}
-            displayTitles={displayTitles}
-            completed
-          />
-        }
+        <DragDropContext onDragEnd={this.onDragEnd}>
+          { showToDo &&
+            <List
+              title="ToDo Tasks"
+              iterateList={toDoList}
+              handleToggleItem={this.handleToggleItem}
+              handleDeleteItem={this.handleDeleteItem}
+              displayTitles={displayTitles}
+            />
+          }
+          { showCompleted &&
+              <List
+                title="Completed Tasks"
+                iterateList={completedList}
+                handleToggleItem={this.handleToggleItem}
+                handleDeleteItem={this.handleDeleteItem}
+                displayTitles={displayTitles}
+                completed
+              />
+          }
+        </DragDropContext>
         <Footer
           numberOfItems={toDoList.length}
         />
