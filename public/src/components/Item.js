@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
-
 class Item extends Component {
   render () {
 
@@ -9,7 +8,11 @@ class Item extends Component {
     return (
       <Draggable draggableId={item.id} index={index}>
         {provided => (
-          <li {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+          <li
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+            ref={provided.innerRef}
+          >
             {item.name}
             <div className="list-buttons">
               <button onClick={(e) => handleToggleItem(item)}>

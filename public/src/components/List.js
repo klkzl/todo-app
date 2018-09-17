@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Droppable } from 'react-beautiful-dnd';
 
 import Item from './Item';
-
 class List extends Component {
   render() {
 
