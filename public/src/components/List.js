@@ -3,6 +3,10 @@ import { Droppable } from 'react-beautiful-dnd';
 
 import Item from './Item';
 
+const getListStyle = isDraggingOver => ({
+  backgroundColor: isDraggingOver ? '#fafafa': 'white',
+  listStyleType: 'none'
+});
 class List extends Component {
   render() {
 
@@ -10,25 +14,28 @@ class List extends Component {
 
     return (
       <div className={ 'list ' + (completed ? 'completed-list' : 'todo-list') }>
-        { displayTitles && <h4>{title}</h4> }
         <Droppable droppableId={title}>
-          {provided => (
-            <ul
+          {(provided, snaphot) => (
+            <div
               ref={provided.innerRef}
               {...provided.droppableProps}
+              style={getListStyle(snaphot.isDraggingOver)}
             >
-              { iterateList.map((item, index) => (
-                <Item
-                  key={item.id}
-                  item={item}
-                  index={index}
-                  handleToggleItem={handleToggleItem}
-                  handleDeleteItem={handleDeleteItem}
-                />
-              ))
-              }
+              { displayTitles && <h4>{title}</h4> }
+              <ul>
+                { iterateList.map((item, index) => (
+                  <Item
+                    key={item.id}
+                    item={item}
+                    index={index}
+                    handleToggleItem={handleToggleItem}
+                    handleDeleteItem={handleDeleteItem}
+                  />
+                  ))
+                }
+              </ul>
               {provided.placeholder}
-            </ul>
+            </div>
           )}
         </Droppable>
       </div>

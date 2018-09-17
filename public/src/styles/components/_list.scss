@@ -2,6 +2,7 @@
 
   h4 {
     font-size: $m-size * 1.2;
+    margin-bottom: $s-size;
     text-transform: lowercase;
   }
 
@@ -14,6 +15,7 @@
       border-left: 5px solid $medium-purple;
       font-weight: 300;
       list-style-type: none;
+      margin: $s-size * .25;
       margin-bottom: $s-size * .5;
       opacity: .9;
       padding: $s-size * .5;

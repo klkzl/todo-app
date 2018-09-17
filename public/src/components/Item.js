@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 
+const draggedItemStyle = (isDragging, draggableStyle) => ({
+  borderBottom: isDragging ? '1px solid #ea3e70' : '1px solid #9e9181',
+  borderTop : isDragging ? '1px solid #ea3e70' : 'none',
+  borderRight : isDragging ? '1px solid #ea3e70' : 'none',
+  ...draggableStyle
+})
 class Item extends Component {
   render () {
 
@@ -8,8 +14,13 @@ class Item extends Component {
 
     return (
       <Draggable draggableId={item.id} index={index}>
-        {provided => (
-          <li {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+        {(provided, snapshot) => (
+          <li
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+            ref={provided.innerRef}
+            style={draggedItemStyle(snapshot.isDragging, provided.draggableProps.style)}
+          >
             {item.name}
             <div className="list-buttons">
               <button onClick={(e) => handleToggleItem(item)}>
