@@ -4,7 +4,7 @@ import { Droppable } from 'react-beautiful-dnd';
 import Item from './Item';
 
 const getListStyle = isDraggingOver => ({
-  backgroundColor: isDraggingOver ? '#f4f4f4': 'white',
+  backgroundColor: isDraggingOver ? '#fafafa': 'white',
   listStyleType: 'none'
 });
 class List extends Component {

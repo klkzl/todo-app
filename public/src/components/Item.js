@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 
 const draggedItemStyle = (isDragging, draggableStyle) => ({
-  background: isDragging ? '#f9f9f9' : 'white',
-  ...draggableStyle,
-  borderBottom: isDragging ? '1px solid #ea3e70' : '1px solid #9e9181'
+  borderBottom: isDragging ? '1px solid #ea3e70' : '1px solid #9e9181',
+  borderTop : isDragging ? '1px solid #ea3e70' : 'none',
+  borderRight : isDragging ? '1px solid #ea3e70' : 'none',
+  ...draggableStyle
 })
 class Item extends Component {
   render () {
